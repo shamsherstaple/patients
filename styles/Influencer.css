@@ -1,0 +1,380 @@
+.influencer-main {
+  margin: 30px 0px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.input-box,
+.second-form-con,
+.third-form-con,
+.influencer-table-con {
+  margin: 30px 0px;
+  padding: 20px;
+  background-color: transparent;
+  border: 1px solid #e9f0fc;
+  border-radius: 8px;
+}
+.influencer-table-con p {
+  font-weight: 500;
+  font-size: 14px;
+  color: #2d3779;
+}
+.input-con {
+  width: 194px;
+}
+.min-max-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-button {
+  width: 78px;
+  height: 32px;
+  background: #2d3779;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  border: none;
+}
+
+.clear-filter-button {
+  width: 120px;
+  height: 32px;
+  background: #f8fafb;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #7e839f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+.clear-button {
+    width: 25px;
+    height: 25px;
+    background: #D0D9F8;
+    border-radius: 62.3003px;
+    font-weight: bold;
+    font-size: 10px;
+    color: #2D3779;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.influencer-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.influencer-buttons-con {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+.input-con1 {
+  width: 280px;
+}
+
+.headInfi{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headInfi {
+  font-weight: 600;
+  font-size: 20px;
+  color: #2D3779;
+}
+
+/*.addCamCont{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+*/
+.influencerModal .modal-content {
+  width: 100%;
+}
+
+.infuModalNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.infuModalNav button{
+  background-color: #7e839f;
+  border: 0px;
+  width: 100%;
+  margin: 10px 10px 0px 0px;
+}
+
+.infuModalNav button:hover{
+  background-color: #2D3779;
+}
+
+.profileShowcase{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileShowcase .userName{
+  font-size: 18px;
+  font-weight: 700;
+  color: #2D3779;
+}
+
+
+.profileShowcase .userDet{
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e839f;
+}
+
+
+.platformDetCont .flowDs{
+  width: 100%;
+  margin: 0px;
+  background-color: #e9f0fc;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.insightCont{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.insightCont div{
+  font-size: 14px;
+  width: 100%;
+  margin: 10px;
+  background-color: #e9f0fc;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.insightCont div .highlight{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.activeInfuModalNav{
+  background-color: #2D3779;
+}
+
+.audienceCont{
+  margin-top: 20px;
+}
+
+.audienceCont h2{
+  font-size: 18px;
+  font-weight: 700;
+  color: #2D3779;
+}
+
+.countFlag{
+  margin-top: 20px;
+}
+
+.countFlag span{
+  font-weight: 500;
+}
+
+.percNow{
+  float: right;
+  font-size: 14px;
+}
+
+.showMoreBtn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+  background-color: transparent;
+  color: #2D3779;
+  border: 1px solid #2D3779;
+  display: block;
+  margin: 20px auto;
+}
+
+.showMoreBtn:hover{
+  background-color: #2D3779;
+}
+
+.btn-close{
+  display: none;
+}
+.socialname {
+  color: #000;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 700;
+}
+.NotiSec button.fc-today-button {
+    display: none;
+}
+.fc-toolbar-chunk .fc-button-primary {
+    background-color: transparent;
+    border: 0;
+    color: #000;
+}
+.fc-header-toolbar.fc-toolbar {
+    position: relative;
+}
+.NotiSec .fc-header-toolbar .fc .fc-button-group, {
+  position: unset;
+}
+button.fc-next-button.fc-button.fc-button-primary {
+    position: absolute;
+    left: 117px;
+    padding: 0;
+    top: 18px;
+}
+.fc-next-button.fc-button.fc-button-primary .fc-icon {
+    font-size: 14px;
+    position: absolute;
+    left: 120px;
+    color: #000;
+    top: 4px;
+}
+.fc-toolbar-chunk .fc-button-primary span.fc-icon.fc-icon-chevron-left {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    color: #000;
+    top: 5px;
+}
+.fc-daygrid-day-events .fc-event-title.fc-sticky {
+    font-size: 0px;
+}
+.campaginModalAdd.modal .modal-dialog {
+  max-width: 800px !important;
+}
+.dropdown .dropdown-menu .dropdown-item {
+  color: #6D727D  !important;
+  font-size: 12px;
+}
+.dropdown .dropdown-menu.show {
+  border: 1px solid #eee;
+  max-width: 140px !important;
+}
+.global-modal .actionLabel span a {
+  color: #448DC9;
+  text-decoration: none;
+}
+.dropdown .dropdown-menu .dropdown-item.active, .dropdown .dropdown-menu .dropdown-item:focus{
+  background-color: transparent !important;
+}
+.dropdown .dropdown-menu .dropdown-item span {
+  top: 3px;
+}
+.headInfi .primBtn {
+  margin-right: 0;
+  border: 0;
+  background-color: #448DC9 !important;
+  padding: 12px 15px;
+}
+.border-unsect {
+  border: 0px;
+  padding: 20px 0;
+}
+.influencer-main input.form-control, .influencer-main select {
+  background-color: transparent;
+}
+.campagin-sec .close {
+  position: absolute;
+  right: 0px;
+  top: -15px;
+}
+.campagin-sec {
+  position: relative;
+}
+.campagin-sec h2 {
+  margin: 0;
+}
+.campagin-sec  .modal-head{
+  margin-bottom: 0px;
+}
+.campModalNav .active.btn.btn-primary {
+  color: #448DC9;
+  border-bottom: 1px solid;
+  border-radius: 0;
+}
+.rbt-input-wrapper .rbt-token {
+  color: #599acf;
+}
+.btnRightCont .primBtn {
+  margin-right: 0;
+}
+.input-con .rbt-input-multi.form-control.rbt-input {
+  background-color: transparent;
+}
+.fc .fc-scrollgrid-section-liquid > td {
+  height: 215px;
+}
+.fc-dayGridMonth-view .fc .fc-scroller-liquid-absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* height: 220px; */
+  overflow: hidden !important;
+}
+.fc-scroller-harness .fc .fc-scroller{
+  overflow:hidden !important;
+}
+.expoModalCOnt.d-unset {
+  display: unset;
+}
+.d-unset .form-check {
+  margin-top: 17px;
+}
+.d-unset .form-check label {
+  font-size: 13px !important;
+  color: #5e5e5e;
+}
+.expoModalOuter .modal-dialog {
+  max-width: 350px;
+}
+.expoModalOuter .btnCenCont button.primBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px 10px;
+}
+.modal-head h3{
+  font-size:18px;
+}
+.space-minus{
+  margin:0px 8px;
+}
+.expoModalOuter  .modal-body {
+  padding: 20px 30px;
+}
+.actionLabel.filter-sec {
+  padding: 0;
+  border: 0;
+  margin-top: 0;
+}
