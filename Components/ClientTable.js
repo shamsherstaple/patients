@@ -9,12 +9,17 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
 import ClientDetailsPopUp from './ClientDetailsPopUp';
 
-export default function ClientTable() {
+export default function ClientTable(props) {
+  console.log(props)
 
   
   const ref = useRef();
 
+
+  const selectAll=props.selectAll
+
   const [action, setAction] = useState();
+
 
   const [actionShow, setActionShow] = useState(false);
   const handleActionClose = () => setActionShow(false);
@@ -34,10 +39,29 @@ export default function ClientTable() {
   const [actionContChoose, setActionContChoose] = useState("Default");
   const [multiSelections, setMultiSelections] = useState([]);
 
+
+  const [peopleInfo, setPeopleInfo] = useState({});
+
   function handleAction(actionType){
     handleActionShow()
     setAction(actionType)
   }
+
+
+  
+  const toggleHandler = (item) => () => {
+    setPeopleInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : {
+            id: item.id,
+            first: item.name,
+            last: item.lastName,
+            age: item.age
+          }
+    }));
+  };
 
   return (
     <Col lg={12}>
@@ -45,7 +69,11 @@ export default function ClientTable() {
         <Table>
       <thead className='custTableHead'>
         <tr>
-          <th> <Form><Form.Check type="checkbox" label="Clients" /></Form></th>
+          <th> <Form><Form.Check type="checkbox" label="Clients" 
+          name="selectAll"
+          onClick={props.handleCheckAll}
+          checked={props.selectAll}
+          /></Form></th>
           <th className="center">Locations</th>
           <th className="center">Disease Area</th>
           <th className="center">Campaigns</th>
@@ -57,11 +85,12 @@ export default function ClientTable() {
       </thead>
       <tbody>
         {[1,2,3,4,5].map((num, index) => {
+          console.log(name)
           return (
           <tr key={index}>
             <td>
               <div className='userinfo'>
-                <Form><Form.Check type="checkbox" /></Form>
+                <Form><Form.Check type="checkbox" onChange={toggleHandler(index)}   checked={selectAll ?props.selectAll:peopleInfo[index]}  /></Form>
                 <div className="imgTableProfile"  onClick={handleClientDetailShow} ><Image src={ProfilePic}  width="50px" height="50px"/></div>
                 <div  onClick={handleClientDetailShow} >
                   <span>Minhas Asif</span>

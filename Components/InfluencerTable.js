@@ -24,6 +24,8 @@ import InfluencerDetailsPopUp from "./InfluencerDetailsPopUp";
 
 export default function InfluencerTable(props) {
 
+  console.log(props)
+
   const ref = useRef();
 
   const selectAll=props.selectAll;

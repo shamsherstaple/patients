@@ -21,8 +21,17 @@ import ApprovedIcon from "../public/Images/verifyIcon.png";
 import ReportTable from "../Components/ReportTable";
 import DateNoti from '../Components/DateNoti';
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Reports(props) {
+
+
+  const [selectAll, setSelectAll] = useState(false);
+  
+  function handleCheckAll() {
+    setSelectAll((prevState) => !prevState);
+    console.log(selectAll);
+  }
 
     const reportData = [
         {
@@ -103,7 +112,11 @@ export default function Reports(props) {
         </div>
         <Button className="report-header-button">Export data</Button>
     </div>
-    <ReportTable />
+    <ReportTable 
+    
+    handleCheckAll={handleCheckAll}
+                    selectAll={selectAll}
+    />
     </div>
     </div>
     </Col>

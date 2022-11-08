@@ -3,12 +3,13 @@ import { Button, Col, Form, Row } from 'react-bootstrap'
 import FilterDetail from './FilterDetail'
 import { FiFilter } from "react-icons/fi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import CampaignTable from './CampaignTable';
+import NewCampaignTable from './NewCampaignTable';
 import Modal from 'react-bootstrap/Modal';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FileBase from 'react-file-base64';
+import CampaignTable from '../Components/CampaignTable';
 
 export default function FilterCampaignSec() {
 
@@ -23,9 +24,17 @@ export default function FilterCampaignSec() {
 
   const [switchNav, setSwitchNav] = useState();
 
+  const [selectAll, setSelectAll] = useState(false);
+
   useEffect(() => {
       setSwitchNav("Default")
   },[])
+
+
+  function handleCheckAll(){
+    setSelectAll(prevState => !prevState)
+    console.log(selectAll)
+  }
 
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const options =["A","B","C","D","EE","FFF","GGG"]
@@ -61,7 +70,16 @@ export default function FilterCampaignSec() {
         </div>
         </Col>
         {showFilter && <FilterDetail />}
-        <CampaignTable />
+        {/* <div className="headInfi">
+                    <span>
+                      Influencers <span>5</span>
+                    </span>
+
+                    {selectAll && (
+                      <Button className="primBtn cmmBtn">Donate</Button>
+                    )}
+                  </div> */}
+        <CampaignTable handleCheckAll={handleCheckAll} selectAll={selectAll} />
     </Row>
 
     {/* Add New Campagin Button Modal */}

@@ -11,6 +11,8 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 export default function FilterClients() {
   const [showFilter, setShowFilter] = useState(false);
 
+  const [selectAll, setSelectAll] = useState(false);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,6 +21,13 @@ export default function FilterClients() {
   const [exportShow, setExportShow] = useState(false);
   const handleExportClose = () => setExportShow(false);
   const handleExportShow = () => setExportShow(true);
+
+
+  
+function handleCheckAll(){
+  setSelectAll(prevState => !prevState)
+  console.log(selectAll)
+}
 
   const options =["A","B","C","D","EE","FFF","GGG"]
   return (
@@ -43,7 +52,7 @@ export default function FilterClients() {
         </div>
         </Col>
         {showFilter && <ClientFilterDetail />}
-        <ClientTable />
+        <ClientTable  handleCheckAll={handleCheckAll} selectAll={selectAll}  />
     </Row>
     
 

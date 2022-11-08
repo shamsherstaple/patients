@@ -12,11 +12,13 @@ import { Typeahead } from 'react-bootstrap-typeahead'
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Link from 'next/link';
 
-export default function ReportTable() {
-  
-  const ref = useRef();
+export default function ReportTable(props) {
+
+
 
   const [action, setAction] = useState();
+  const [peopleInfo, setPeopleInfo] = useState({});
+  const selectAll=props.selectAll;
 
   const [actionShow, setActionShow] = useState(false);
   const handleActionClose = () => setActionShow(false);
@@ -32,6 +34,26 @@ export default function ReportTable() {
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const options =["A","B","C","D","EE","FFF","GGG"]
   
+
+
+  const toggleHandler = (item) => () => {
+    setPeopleInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : {
+            id: item.id,
+            first: item.name,
+            last: item.lastName,
+            age: item.age
+          }
+    }));
+  };
+  
+  const ref = useRef();
+
+
+
   function handleChange(){
     
   }
@@ -108,14 +130,17 @@ export default function ReportTable() {
               <th>
                 {" "}
                 <Form>
-                  <Form.Check type="checkbox" label="Clients" />
+                  <Form.Check type="checkbox" label="Campaign"    name="selectAll"
+                
+                onClick={props.handleCheckAll}
+                checked={props.selectAll}/>
                 </Form>
               </th>
-              <th>Product</th>
-              <th>Start & Finish Date</th>
+              <th>Type</th>
+              <th>Date</th>
               <th>Influencers</th>
-              <th>Budget</th>
-              <th>Status</th>
+              <th>Price</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -125,7 +150,11 @@ export default function ReportTable() {
                   <td>
                     <div className="userinfo">
                       <Form>
-                        <Form.Check type="checkbox" />
+                        <Form.Check type="checkbox"
+                         onChange={toggleHandler(index)}   checked={selectAll ?props.selectAll:peopleInfo[index]} 
+                        
+                        
+                        />
                       </Form>
                       <div style={{margin: "0px 10px",}}><Link href="singlereporttable" passHref><Image src={ProfilePic} width="50px" height="50px"/></Link></div>
                       <div>
@@ -134,10 +163,10 @@ export default function ReportTable() {
                       </div>
                     </div>
                   </td>
-                  <td>Depression</td>
+                  <td>Basic</td>
                   <td>
                   <div className='dateBox'>
-                    {`${moment(dateRange[0]).format('LL')} - ${moment(dateRange[1]).format('LL')}`} <MdOutlineDateRange style={{marginLeft: "5px"}}size={20} />
+                    {` ${moment(dateRange[1]).format('LL')}`} <MdOutlineDateRange style={{marginLeft: "5px"}}size={20} />
                   </div>
                   </td>
                   <td>50</td>

@@ -10,13 +10,54 @@ import Image from 'next/image';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import ClientDetailsPopUp from './ClientDetailsPopUp';
 import Link from 'next/link';
+import Cardsec from "../public/Images/card.png";
+import Editsec from "../public/Images/edit.png";
+import Datesec from "../public/Images/date.png";
+import Removesec from "../public/Images/remove.png";
+import InfluencerTableModal from "./InfluencerTableModal";
 
-export default function CampaignTable(props) {
+
+export default function NewCampaignTable(props) {
+
+  const data = [
+    {
+      id: "1",
+      firstName: "Minhas",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    },{
+      id: "2",
+      firstName: "Minhas",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    }
+    ,{
+      id: "3",
+      firstName: "Developer",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    }
+  ];
 
   const ref = useRef();
 
 
   const selectAll=props.selectAll;
+
+  const handleInfuDetailClose = () => setInfuDetailShow(false);
+  const handleInfuDetailShow = () => setInfuDetailShow(true);
 
 
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
@@ -41,7 +82,6 @@ export default function CampaignTable(props) {
     setShowAlert(true) 
     handleActionClose()
   };
-  
 
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const options =["A","B","C","D","EE","FFF","GGG"]
@@ -75,9 +115,6 @@ export default function CampaignTable(props) {
     }));
   };
 
-
- 
-
   return (
     <Col lg={12}>
       <div className='campainTableContainer'>
@@ -91,19 +128,65 @@ export default function CampaignTable(props) {
       <thead className='custTableHead'>
         <tr>
           <th> <Form><Form.Check type="checkbox" 
-          label="Clients"
+          label="Username"
           onClick={props.handleCheckAll}
           checked={props.selectAll}
           /></Form></th>
-          <th>Status</th>
-          <th>Start & Finish Date</th>
-          <th>Influencers</th>
-          <th>Budget</th>
+          <th>Campaigns</th>
+          <th>CPC</th>
+          <th>CPT</th>
+          <th>Price</th>
+          <th>Overlap</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {[1,2,3].map((num, index) => {
+      {data.map((d, index) => {
+            console.log(d)
+            return (
+              <tr key={index}>
+                <td>
+                  <div className="userinfo">
+                    <Form>
+                      {/* <Form.Check type="checkbox" checked={props.selectAll}  onChange={handleChange}/> */}
+                      <Form.Check type="checkbox"    onChange={toggleHandler(index)}   checked={selectAll ?props.selectAll:peopleInfo[index]}  />
+                                       </Form>
+                    <div onClick={handleInfuDetailShow} style={{margin: "0px 10px"}}><Image src={ProfilePic} width="50px" height="50px" /></div>
+                    <div onClick={handleInfuDetailShow}>
+                      <span>{d.firstName} </span>
+                      <span>Multiple Sclerosis</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="center">{d.Campaigns}</td>
+                <td className="center">{d.CPC}</td>
+                <td className="center">{d.CPT}</td>
+                <td className="center">{d.Price} </td>
+                <td className="center">{d.Overlap}</td>
+                <td className="center">
+                <DropdownButton variant="link" id="dropdown-basic-button" title={<BsThreeDotsVertical />}>
+                  <Dropdown.Item onClick={() => handleAction('Contact')}><Image src={Cardsec}/> Contact</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Note')}><Image src={Editsec}/>  Note</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Schedule')}><Image src={Datesec}/> Schedule</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Remove')}> <Image src={Removesec}/> Remove</Dropdown.Item>
+                </DropdownButton>
+                <InfluencerTableModal 
+                  actionShow={actionShow}
+                  handleActionClose={handleActionClose}
+                  action={action}
+                  actionContChoose={actionContChoose}
+                  setActionContChoose={setActionContChoose}
+                  optionLabel={optionLabel}
+                  ref={ref}
+                  setMultiSelections={setMultiSelections}
+                  multiSelections={multiSelections}
+                />
+                
+                </td>
+              </tr>
+            );
+          })}
+        {/* {[1,2,3].map((num, index) => {
           return (
           <tr key={index}>
             <td>
@@ -136,7 +219,7 @@ export default function CampaignTable(props) {
             </td>
           </tr>
           )
-        })}
+        })} */}
       </tbody>
     </Table>
     <div style={{float: "right", marginTop: "20px"}}>
