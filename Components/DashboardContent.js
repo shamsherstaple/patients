@@ -73,11 +73,7 @@ export default function DashboardContent() {
 ]
 
 const [startDate, setStartDate] = useState(new Date());
-
-
-
 const [dateRange, setDateRange] = useState([new Date(), new Date()]);
-
 useEffect(() => {
   const draggables = document.querySelectorAll('.draggable')
   const containers = document.querySelectorAll('.dataCard')

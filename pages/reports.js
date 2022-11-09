@@ -20,6 +20,7 @@ import TimeIcon from "../public/Images/timeIcon.png";
 import ApprovedIcon from "../public/Images/verifyIcon.png";
 import ReportTable from "../Components/ReportTable";
 import DateNoti from '../Components/DateNoti';
+import FilterReport from '../Components/FilterReport';
 import Image from "next/image";
 import { useState } from "react";
 
@@ -105,12 +106,16 @@ export default function Reports(props) {
     </div>
     </div>
     <div className="report-table-con">
+
+    <FilterReport  />
     <div className="report-header">
         <div className="report-header-sec1">
             <h3>Reports</h3>
             <p>20 new reports</p>
         </div>
+        
         <Button className="report-header-button">Export data</Button>
+       
     </div>
       <ReportTable 
       handleCheckAll={handleCheckAll}

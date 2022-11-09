@@ -133,6 +133,7 @@ export default function SingleReportTable() {
             <Form>
             <Form.Check type="checkbox"    onChange={toggleHandler(index)}   checked={selectAll ?props.selectAll:peopleInfo[index]}  />
             </Form>
+
             </td>
             <td>{d.Influencer}</td>
             <td>{d.Size}</td>

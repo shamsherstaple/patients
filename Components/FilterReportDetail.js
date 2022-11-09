@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { Typeahead } from 'react-bootstrap-typeahead';
 
-
-export default function FilterDetail() {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const options =["A","B","C","D","EE","FFF","GGG"]
-  
+export default function FilterDSClientsDetail() {
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
+    const ref = useRef();
+    const options =["A","B","C","D","EE","FFF","GGG"]
+    const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   return (
     <Col>
     <div className='filterContainer'>
     <Form>
     <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Search For</Form.Label>
+            <Form.Label>Company</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option>Please Select</option>
                 <option>...</option>
             </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Client</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>...</option>
           </Form.Select>
         </Form.Group>
@@ -36,7 +36,7 @@ export default function FilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
@@ -45,7 +45,7 @@ export default function FilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
         </Form.Group>
       </Row>
@@ -53,7 +53,7 @@ export default function FilterDetail() {
         <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Platform</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option>Please Select</option>
                 <option>...</option>
             </Form.Select>
         </Form.Group>
@@ -71,14 +71,14 @@ export default function FilterDetail() {
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Influencer Size</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>...</option>
           </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Promotion Type</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option> Please Select</option>
             <option>...</option>
           </Form.Select>
         </Form.Group>
@@ -127,7 +127,7 @@ export default function FilterDetail() {
     </Form>
     <div className='btnCont'>
         <Button className='primBtn cmmBtn'>Filter</Button>
-        <Button className='ligBtn cmmBtn'><span className='clrBtn'>00</span>Clear all filter</Button>
+        <Button className='ligBtn cmmBtn'><span className='clrBtn'>06</span>Clear filter</Button>
     </div>
     </div>
     </Col>
