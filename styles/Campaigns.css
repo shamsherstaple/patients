@@ -587,3 +587,15 @@ input[type=file]::file-selector-button:hover {
 .actdionModal  .actionDm > div{
     padding:0px;
 }
+
+
+@media only screen and (max-width:1400px){
+    .cardIndustry {
+        margin-top: 0px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        min-height: 300px;
+        height:auto;
+    }
+}

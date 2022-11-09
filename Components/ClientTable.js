@@ -66,7 +66,7 @@ export default function ClientTable(props) {
   return (
     <Col lg={12}>
       
-        <Table>
+        <Table className='global-table-sec'>
       <thead className='custTableHead'>
         <tr>
           <th> <Form><Form.Check type="checkbox" label="Clients" 

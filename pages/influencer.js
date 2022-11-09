@@ -264,7 +264,7 @@ export default function Influencer(props) {
                 <div className="influencer-table-con border-unsect">
                   <div className="headInfi">
                     <span>
-                      Influencers <span>5</span>
+                      Influencers <span class="rounded-data">5</span>
                     </span>
 
                     {selectAll && (
