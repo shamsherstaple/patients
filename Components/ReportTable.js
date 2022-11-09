@@ -144,7 +144,7 @@ export default function ReportTable(props) {
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 3].map((num, index) => {
+            {[1, 2, 3,4].map((num, index) => {
               return (
                 <tr key={index}>
                   <td>

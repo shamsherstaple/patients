@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Button, Col, Dropdown, DropdownButton, Form, Modal, Row, Table } from 'react-bootstrap'
+import { Button, Col, Dropdown, DropdownButton, Form, Modal, Row, Table,Pagination } from 'react-bootstrap'
 import moment from 'moment/moment';
 import ProfilePic from "../public/Images/profile-circle-2 1profil.png";
 import { MdOutlineDateRange } from "react-icons/md";
@@ -26,67 +26,142 @@ export default function SingleReportTable() {
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const options =["A","B","C","D","EE","FFF","GGG"]
 
+  const data = [
+    {
+      Influencer: "Total",
+      Size: "352",
+      Reach: " 400",
+      Likes: "54",
+      Comments:'20',
+      Clicks:'5%',
+      Engagement:'5.32%',
+      CPT:'3.2',
+      CPC:'11.12',
+      Overlap:'12%'
+    },{
+      Influencer: "Total",
+      Size: "352",
+      Reach: " 400",
+      Likes: "54",
+      Comments:'20',
+      Clicks:'5%',
+      Engagement:'5.32%',
+      CPT:'3.2',
+      CPC:'11.12',
+      Overlap:'12%'
+    },{
+      Influencer: "Total",
+      Size: "352",
+      Reach: " 400",
+      Likes: "54",
+      Comments:'20',
+      Clicks:'5%',
+      Engagement:'5.32%',
+      CPT:'3.2',
+      CPC:'11.12',
+      Overlap:'12%'
+    },{
+      Influencer: "Total",
+      Size: "352",
+      Reach: " 400",
+      Likes: "54",
+      Comments:'20',
+      Clicks:'5%',
+      Engagement:'5.32%',
+      CPT:'3.2',
+      CPC:'11.12',
+      Overlap:'12%'
+    }
+  ];
+
   const [actionContChoose, setActionContChoose] = useState("Default");
   const [multiSelections, setMultiSelections] = useState([]);
-
+  const selectAll='';
   const [startDate, setStartDate] = useState(new Date());
-
+  const [peopleInfo, setPeopleInfo] = useState({});
   function handleAction(actionType){
     handleActionShow()
     setAction(actionType)
   }
 
+
+  const toggleHandler = (item) => () => {
+    setPeopleInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : {
+            id: item.id,
+            first: item.name,
+            last: item.lastName,
+            age: item.age
+          }
+    }));
+  };
+
   return (
     <Row>
     <Col lg={9} className="TableCol">
-      <h2 className='heading'>Report Table</h2>
+      <h2 className='heading'>Influencer</h2>
     <Table className='singleCampTable'>
     <thead className='custTableHead'>
       <tr>
+      <th>
+      <Form>
+      <Form.Check type="checkbox" />
+      </Form>
+      </th>
         <th>Influencer</th>
-        <th>Influencer size</th>
-        <th>Info </th>
-        <th>Website click</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
+        <th>Size</th>
+        <th>Reach </th>
+        <th>Likes</th>
+        <th>Comments</th>
+        <th>Clicks</th>
+        <th>Engagement</th>
+        <th>CPT</th>
+        <th>CPC</th>
+        <th>Overlap</th>
       </tr>
     </thead>
-    <tbody>
-      {[1,2,3].map((num, index) => {
+      <tbody>
+      {data.map((d, index) => {
+        console.log(d)
         return (
-        <tr key={index}>
-          <td>
-            <div className='userinfo'>
-              <div style={{margin: "0px 10px",}}><Image src={ProfilePic} width="50px" height="50px"/></div>
-              <div>
-                <span>Minhas Asif</span>
-                <span>Multiple Sclerosis</span>
-              </div>
-            </div>
+          <tr key={index}>
+            <td>
+            
+            <Form>
+            <Form.Check type="checkbox"    onChange={toggleHandler(index)}   checked={selectAll ?props.selectAll:peopleInfo[index]}  />
+            </Form>
             </td>
-          <td>Depression App <p style={{fontSize: "12px"}}></p></td>
-          <td>
-            <div className='dateBox'>
-              {`${moment(dateRange[0]).format('LL')} - ${moment(dateRange[1]).format('LL')}`} <MdOutlineDateRange style={{marginLeft: "5px"}}size={20} />
-            </div>
-          </td>
-          <td>$700</td>
-          <td>
-          <DropdownButton variant="link"id="dropdown-basic-button" title={<BsThreeDotsVertical />}>
-            <Dropdown.Item onClick={() => handleAction('Contact')}>Contact</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleAction('Note')}>Note</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleAction('Schedule')}>Schedule</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleAction('Remove')}>Remove</Dropdown.Item>
-          </DropdownButton>
-          </td>
-          <td>$700</td>
-          <td>$700</td>
-        </tr>
-        )
+            <td>{d.Influencer}</td>
+            <td>{d.Size}</td>
+            <td>{d.Reach}</td>
+            <td>{d.Likes}</td>
+            <td>{d.Comments}</td>
+            <td>{d.Clicks}</td>
+            <td>{d.Engagement}</td>
+            <td className="center">{d.CPT}</td>
+            <td className="center">{d.CPC}</td>
+            <td className="center">{d.Overlap}</td>
+          </tr>
+        );
       })}
-    </tbody>
+      </tbody>
   </Table>
+
+  
+  <div style={{ float: "right", marginTop: "0px" }}>
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Item>{2}</Pagination.Item>
+          <Pagination.Item active>{3}</Pagination.Item>
+          <Pagination.Ellipsis />
+          <Pagination.Item>{32}</Pagination.Item>
+          <Pagination.Last />
+        </Pagination>
+      </div>
     </Col>
   <Col lg={3}>
       <DateNoti />

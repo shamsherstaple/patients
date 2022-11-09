@@ -112,11 +112,10 @@ export default function Reports(props) {
         </div>
         <Button className="report-header-button">Export data</Button>
     </div>
-    <ReportTable 
-    
-    handleCheckAll={handleCheckAll}
-                    selectAll={selectAll}
-    />
+      <ReportTable 
+      handleCheckAll={handleCheckAll}
+      selectAll={selectAll}
+      />
     </div>
     </div>
     </Col>
