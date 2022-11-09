@@ -6,6 +6,7 @@ import { FaTiktok } from "react-icons/fa";
 import graph from "../public/Images/Vector 3.2.png"
 import DashboardContent from '../Components/DashboardContent';
 import DateNoti from '../Components/DateNoti';
+import socialuser from "../public/Images/user.png";
 import { useEffect } from 'react';
 import Image from 'next/image';
 
@@ -51,7 +52,12 @@ export default function DiscoverInfluencers(props) {
                     <span>{data.socialName}</span>
                     </div>
                     <div className='socialData'>
-                    <span>{data.data}</span>
+                    <div className="socialData">
+                      <span>
+                        <Image src={socialuser} /> {data.data}
+                      </span>
+                    </div>
+                   
                     <Image src={graph} />
                     </div>
                     <span className='desc'>{data.desc}</span>

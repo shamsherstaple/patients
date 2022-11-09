@@ -157,14 +157,14 @@ export default function SingleCampaignsTable(props) {
     <Col lg={12}>
     <div className="headInfi">
                     <span>
-                      Influencers<span>5</span>
+                      Influencers<span class="rounded-data ms-2">5</span>
                     </span>
 
                     {selectAll && (
                       <Button className="primBtn cmmBtn">Donate</Button>
                     )}
                   </div>
-      <Table>
+      <Table className='global-table-sec'>
         <thead className="custTableHead">
           <tr>
             <th>

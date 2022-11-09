@@ -81,14 +81,14 @@ export default function CampaignTable(props) {
 
   return (
     <Col lg={12}>
-      <div className='campainTableContainer'>
+      <div className='campainTableContainer global_tab_sec'>
       <div className='miniNav'>
             <Button variant="link" className={`switchBtn1 ${isActive === "Preparation" ? "activeBtn" : "inactiveBtn"}`} onClick={ () => {handleSwitch("Preparation")}}>Campaigns in preparation<span>03</span></Button>
             <Button variant="link" className={`switchBtn1 ${isActive === "Ongoing" ? "activeBtn" : "inactiveBtn"}`}  onClick={ () => {handleSwitch("Ongoing")}}>Ongoing campaigns<span>01</span></Button>
             <Button variant="link" className={`switchBtn1 ${isActive === "Finished" ? "activeBtn" : "inactiveBtn"}`}  onClick={ () => {handleSwitch("Finished")}}>Finished Campaigns<span>02</span></Button>
             <Button variant="link" className={`switchBtn1 ${isActive === "Report" ? "activeBtn" : "inactiveBtn"}`}  onClick={ () => {handleSwitch("Report")}}>Report Sent<span>06</span></Button>
         </div>
-        <Table>
+        <Table className='global-table-sec'>
       <thead className='custTableHead'>
         <tr>
           <th> <Form><Form.Check type="checkbox" 

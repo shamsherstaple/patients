@@ -103,7 +103,7 @@ export default function SingleReportTable() {
     <Row>
     <Col lg={9} className="TableCol">
       <h2 className='heading'>Influencer</h2>
-    <Table className='singleCampTable'>
+    <Table className='singleCampTable global-table-sec'>
     <thead className='custTableHead'>
       <tr>
       <th>
