@@ -118,10 +118,10 @@ function handleAction(actionType){
 
   return (
     <div className='dataConatiner'>
-    <Row>
+    <Row className='dataCardSlider'>
         { data.map((d, index) => {
           return (
-        <Col lg={3} key={index}>
+        <Col lg={4} key={index}>
           <div className='dataCard' style={{padding: "10px"}}>
             <span className='s1'>{d.headingInner}: <span className='s2'>{d.num}</span></span>
          { [1,2,3,4].map((a,index) => {
