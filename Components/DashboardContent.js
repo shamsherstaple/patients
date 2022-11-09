@@ -41,13 +41,7 @@ export default function DashboardContent() {
   const handleExportShow = () => setExportShow(true);
 
   const [actionContChoose, setActionContChoose] = useState("Default");
-  // const [noteShow, setNoteShow] = useState(false);
-  // const handleNoteClose = () => setNoteShow(false);
-  // const handleNoteShow = () => setNoteShow(true);
-
-  // const [contactShow, setContactShow] = useState(false);
-  // const handleContactClose = () => setContactShow(false);
-  // const handleContactShow = () => setContactShow(true);
+  const [switchNav, setSwitchNav] = useState();
 
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const [multiSelections, setMultiSelections] = useState([]);
@@ -119,6 +113,13 @@ useEffect(() => {
 
 
 const [editDisable, setEditDisable] = useState(true);
+function popupClose2() {
+  setExportShow(false);
+}
+
+function addpopupClose2() {
+  setShow(false);
+}
 
 function handleEdit(){
   setEditDisable(prevState => !prevState)
@@ -140,7 +141,7 @@ const [filterData, setFilterData] = useState({
   addLabel: "", thoseWithTask: "", 
 })
 function handleChange(e){
-  const {type,name,value} = e.target;
+  const {name,value} = e.target;
   setFormData(prevData => {
    return {
     ...prevData,
@@ -191,11 +192,12 @@ function handleTypehead(selected,name){
      diseaseArea: selected,
     }
    })
-   console.log(name)
+ 
 }
-console.log(formData)
-console.log(newFormData)
 
+useEffect(() => {
+  setSwitchNav("Default");
+}, []);
 
   return (
     <div className='mainContent'>
@@ -211,7 +213,7 @@ console.log(newFormData)
             {showFilter && <IoIosArrowUp style={{marginLeft: "10px"}}size={16}/>}
            </Button>
           <Button className="ligBtn cmmBtn"  onClick={handleExportShow}>Export Report</Button>
-          <Button className="primBtn cmmBtn" onClick={handleShow}>Add new Influencer</Button>
+          <Button className="primBtn cmmBtn" onClick={handleShow}>Add Influencer</Button>
         </div>
       </div>
       {showFilter && <DiscoverInfluencerFilterDetail />}
@@ -262,8 +264,19 @@ console.log(newFormData)
       </Row>
 
       <Modal show={show} onHide={handleClose}>
+        
       <Modal.Body className='campModal'>
-        <h2>Add New Influencer</h2>
+        <button
+                    type="button"
+                    className="close"
+                    onClick={addpopupClose2}
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+        <h2>Add Influencer</h2>
+        
         <Form>
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Username</Form.Label>
@@ -292,7 +305,7 @@ console.log(newFormData)
               id="basic-typeahead-single"
               labelKey="diseaseArea"
               options={options}
-              placeholder="--- Please Select ---" 
+              placeholder="Please Select" 
               onChange={(selected) => setNewFormData(prevData => ({...prevData,diseaseArea: selected,})
                )}
               selected={newFormData.diseaseArea}
@@ -313,110 +326,185 @@ console.log(newFormData)
             />
         </Form.Group>
         </Form>
-        <Button className='primBtn cmmBtn' style={{width: "100%"}}>Add New Influencer</Button>
+        <Button className='primBtn cmmBtn' style={{width: "100%"}}>Add Influencer</Button>
       </Modal.Body>
     </Modal>
-
-
     {/* Edit Modal */}
+    <Modal
+              className="campaginModalAdd modal-field"
+              show={editShow} onHide={handleEditClose}
+            >
+              <div className="campagin-sec d-flex justify-content-between">
+                <div className="modal-head d-flex justify-content-between align-items-center">
+                <h2>Edit Influencer</h2>
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={handleEditClose}
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="campModalNav">
+                  <Button
+                    style={{
+                      backgroundColor:
+                        (switchNav === "Info" || switchNav === "Default") &&
+                        "#2D3779",
+                    }}
+                    onClick={() => setSwitchNav("Info")}
+                    className={
+                      switchNav === "Info" || switchNav === "Default"
+                        ? "active"
+                        : ""
+                    }
+                  >
+                    Info
+                  </Button>
+                  <Button
+                    style={{
+                      backgroundColor: switchNav === "Management" && "#2D3779",
+                    }}
+                    onClick={() => setSwitchNav("Management")}
+                    className={switchNav === "Management" ? "active" : ""}
+                  >
+                    Management
+                  </Button>
+                </div>
+              </div>
+              {(switchNav === "Info" || switchNav === "Default") && (
+                <Modal.Body>
+
+<Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control  name="firstName" value={formData.firstName} onChange={handleChange} type="text" placeholder="Enter First Name" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control name="lastName" value={formData.lastName} onChange={handleChange} type="text" placeholder="Enter Last Name" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control disabled={editDisable} name="email" value={formData.email}  onChange={handleChange} type="email" placeholder="Enter Email address" style={{backgroundColor: "#fff"}}/>
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Username</Form.Label>
+        <Form.Control  name="userName" value={formData.userName} onChange={handleChange} type="text" placeholder="Enter Username" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formGridState">
+      <Form.Label>Soical Media</Form.Label>
+      <Form.Select  name="platform" value={formData.platform} onChange={handleChange} defaultValue="Choose...">
+        <option>Please Select </option>
+        <option>Instagram</option>
+        <option>Tiktok</option>
+        <option>Youtube</option>
+      </Form.Select>
+    </Form.Group>
+  
+    <Form.Group className="mb-0" controlId="formGroupEmail">
+        <Form.Label>Disease area</Form.Label>
+        <Typeahead
+          id="basic-typeahead-single"
+          labelKey="name"
+          options={options}
+          placeholder="Please Select"
+          //disabled={editDisable} 
+          name="diseaseArea" 
+          value={formData.diseaseArea} 
+          //onChange={handleChange} 
+        />
+    </Form.Group>
+   
+    <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Location</Form.Label>
+        <Typeahead
+          id="basic-typeahead-single"
+          labelKey="name"
+          options={options}
+          placeholder="Please Select"
+          ///disabled={editDisable}
+           name="location" 
+          value={formData.location}
+         // onChange={handleChange} 
+        />
+    </Form.Group>
 
 
 
-    <Modal show={editShow} onHide={handleEditClose}>
-      <Modal.Body className='campModal'>
-        <h2>Edit Influencer</h2>
-        <Form>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control disabled={editDisable} name="firstName" value={formData.firstName} onChange={handleChange} type="text" placeholder="Enter First Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control disabled={editDisable} name="lastName" value={formData.lastName} onChange={handleChange} type="text" placeholder="Enter Last Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control disabled={editDisable} name="userName" value={formData.userName} onChange={handleChange} type="text" placeholder="Enter Username" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridState">
-          <Form.Label>Platform</Form.Label>
-          <Form.Select disabled={editDisable} name="platform" value={formData.platform} onChange={handleChange} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
-            <option>Instagram</option>
-            <option>Tiktok</option>
-            <option>Youtube</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control disabled={editDisable} name="email" value={formData.email}  onChange={handleChange} type="email" placeholder="Enter Email address" style={{backgroundColor: "#fff"}}/>
-        </Form.Group>
-        <Form.Group className="mb-0" controlId="formGroupEmail">
-            <Form.Label>Disease area</Form.Label>
-            <Typeahead
-              id="basic-typeahead-single"
+                  
+                  <Button className="primBtn cmmBtn" style={{ width: "100%" }}>
+                    Add new Campagin
+                  </Button>
+                </Modal.Body>
+              )}
+              {switchNav === "Management" && (
+              <Modal.Body>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Comments</Form.Label>
+              <Form.Control  name="comments" value={formData.comments}  onChange={handleChange} as="textarea" rows={2} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGroupEmail">
+              
+              <Form.Label>Labels</Form.Label>
+             
+              <Typeahead
+              defaultSelected={optionLabel.slice(0, 1)}
+              id="public-methods-example"
               labelKey="name"
-              options={options}
-              placeholder="--- Please Select ---"
-              disabled={editDisable} 
-              name="diseaseArea" 
-              value={formData.diseaseArea} onChange={handleChange} 
-            />
-        </Form.Group>
-       
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Location</Form.Label>
-            <Typeahead
-              id="basic-typeahead-single"
-              labelKey="name"
-              options={options}
-              placeholder="--- Please Select ---"
-              disabled={editDisable} name="location" 
-              value={formData.location} onChange={handleChange} 
-            />
-        </Form.Group>
+              multiple
+              options={optionLabel}
+              placeholder="Add Label"
+              />
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Comments</Form.Label>
-          <Form.Control disabled={editDisable} name="comments" value={formData.comments}  onChange={handleChange} as="textarea" rows={2} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Label</Form.Label>
-            <Form.Control disabled={editDisable} name="labels" value={formData.labels}  onChange={handleChange} type="text" placeholder="Enter Label" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Meetings</Form.Label>
-            <Form.Control disabled={editDisable} name="meeting" value={formData.meeting}  onChange={handleChange} type="text" placeholder="Enter Meetings" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Reminders</Form.Label>
-            <Form.Control disabled={editDisable} name="reminders" value={formData.reminders}  onChange={handleChange} type="text" placeholder="Enter Reminders" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Tasks </Form.Label>
-            <Form.Control disabled={editDisable} name="tasks" value={formData.tasks}  onChange={handleChange} type="text" placeholder="Enter Tasks" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridState">
-          <Form.Label>Status </Form.Label>
-          <Form.Select disabled={editDisable} name="dateAdded" value={formData.status}  onChange={handleChange} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
-            <option>Ongoing</option>
-            <option>Done</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridState">
-          <Form.Label>Date Added </Form.Label>
-          <Form.Control disabled readOnly name="tasks" value={moment(dateRange[0]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridState">
-          <Form.Label>Date Status Changed </Form.Label>
-          <Form.Control disabled readOnly name="tasks" value={moment(dateRange[1]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
-        </Form.Group>
-        </Form>
-        {editDisable && <Button className='primBtn cmmBtn' onClick={handleEdit}style={{width: "100%"}}>Edit</Button>}
-        {!editDisable && <Button className='primBtn cmmBtn' style={{width: "100%"}}>Save</Button>}
-      </Modal.Body>
-    </Modal>
+
+              <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Meetings</Form.Label>
+              <Typeahead
+              defaultSelected={optionLabel.slice(0, 1)}
+              id="public-methods-example"
+              labelKey="name"
+              multiple
+              options={optionLabel}
+              placeholder="Add Label"
+              />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Reminders</Form.Label>
+              <Form.Control  name="reminders" value={formData.reminders}  onChange={handleChange} type="text" placeholder="Enter Reminders" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Tasks </Form.Label>
+              <Form.Control  name="tasks" value={formData.tasks}  onChange={handleChange} type="text" placeholder="Enter Tasks" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGridState">
+              <Form.Label>Status </Form.Label>
+              <Form.Select  name="dateAdded" value={formData.status}  onChange={handleChange} defaultValue="Choose...">
+              <option>Please Select </option>
+              <option>Ongoing</option>
+              <option>Done</option>
+              </Form.Select>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formGridState">
+              <Form.Label>Date Added </Form.Label>
+              <Form.Control disabled readOnly name="tasks" value={moment(dateRange[0]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formGridState">
+              <Form.Label>Date Status Changed </Form.Label>
+              <Form.Control disabled readOnly name="tasks" value={moment(dateRange[1]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
+              </Form.Group>
+
+              {editDisable && <Button className='primBtn cmmBtn' onClick={handleEdit}style={{width: "100%"}}>Edit</Button>}
+              {!editDisable && <Button className='primBtn cmmBtn' style={{width: "100%"}}>Save</Button>}
+
+              </Modal.Body>
+              )}
+            </Modal>
+
 
     {/* actionModal */}
 
@@ -426,7 +514,7 @@ console.log(newFormData)
       <Modal.Body className='actdionModal'>
        <h2>Contact</h2>
        <Form.Select onChange={(e) => setActionContChoose(e.target.value)} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option> Please Select</option>
             <option>DM</option>
             <option>Email</option>
         </Form.Select>
@@ -464,7 +552,7 @@ console.log(newFormData)
       <Modal.Body className='actdionModal'>
        <h2>Note</h2>
        <Form.Select onChange={(e) => setActionContChoose(e.target.value)} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option> Please Select </option>
             <option>Comment</option>
             <option>Label</option>
         </Form.Select>
@@ -507,7 +595,7 @@ console.log(newFormData)
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Type</Form.Label>
         <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option> Please Select </option>
             <option>Meeting</option>
             <option>Task</option>
             <option>Reminder</option>
@@ -533,7 +621,7 @@ console.log(newFormData)
           multiple
           onChange={setMultiSelections}
           options={options}
-          placeholder="--- Please Select ---"
+          placeholder="Please Select"
           selected={multiSelections}
         />
        </Form.Group>
@@ -549,7 +637,7 @@ console.log(newFormData)
       </Modal>
 
       <Modal show={exportShow} onHide={handleExportClose}>
-        <Modal.Body>
+        {/* <Modal.Body>
            <b>Do you want to export:</b><br />
           <div className='expoModalCOnt'>
            <Form.Check type="checkbox" label="All" />
@@ -560,7 +648,50 @@ console.log(newFormData)
           <div className='btnCenCont'>
             <Button className="primBtn cmmBtn expoBtn">Export</Button>
           </div>
-        </Modal.Body> 
+        </Modal.Body>  */}
+
+<Modal.Body>
+                <div className="modal-head d-flex justify-content-between align-items-center">
+                  <h3 className="mb-0">Do you want to export:</h3>
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={popupClose2}
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div
+                  className="expoModalCOnt d-unset"
+                  style={{ justifyContent: "flex-start" }}
+                >
+                  <div class>
+                    <Form.Check
+                      type="checkbox"
+                      label="All"
+                      style={{ marginRight: "10px" }}
+                    />
+                  </div>
+                  <div>
+                    <Form.Check type="checkbox" label="Identified" />
+                  </div>
+                  <div>
+                    <Form.Check type="checkbox" label="Contacted" />
+                  </div>
+                  <div>
+                    <Form.Check type="checkbox" label="Registered" />
+                  </div>
+                  <div>
+                    <Form.Check type="checkbox" label="To be approved" />
+                  </div>
+                </div>
+                <div className="btnCenCont">
+                  <Button className="primBtn cmmBtn expoBtn">Export</Button>
+                </div>
+              </Modal.Body>
       </Modal>
     </div>
   )
