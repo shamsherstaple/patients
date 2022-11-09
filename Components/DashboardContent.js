@@ -130,7 +130,7 @@ const [formData, setFormData] = useState({
 })
 
 const [newFormData, setNewFormData] = useState({
-  firstName: "", lastName: "", userName: "", platform: "", email:"",diseaseArea: [], location: "",
+  socialMedia: "", followers: "", userName: "", platform: "", email:"",diseaseArea: [], location: "",
 })
 
 const [filterData, setFilterData] = useState({
@@ -261,24 +261,23 @@ console.log(newFormData)
         <Form>
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Username</Form.Label>
-            <Form.Control onChange={handleNewInfluencer}  name="userName" value={newFormData.userName} type="text" placeholder="Enter Username" />
+            <Form.Control onChange={handleNewInfluencer}  name="userName" value={newFormData.userName} type="text" placeholder="Enter username" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control  onChange={handleNewInfluencer} name="firstName" value={newFormData.firstName} type="text" placeholder="Enter First Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control  onChange={handleNewInfluencer} name="lastName" value={newFormData.lastName} type="text" placeholder="Last Name" />
-        </Form.Group>
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Platform</Form.Label>
+        <Form.Label>Social Media</Form.Label>
           <Form.Select  onChange={handleNewInfluencer} name="platform" value={newFormData.platform} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Select Social Media</option>
             <option>Instagram</option>
             <option>Tiktok</option>
             <option>Youtube</option>
           </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Label>Followers</Form.Label>
+            <Form.Control  onChange={handleNewInfluencer} name="followers" value={newFormData.followers} type="text" placeholder="Enter followers" />
+        </Form.Group>
+        <Form.Group as={Col} controlId="formGridState">
+         
         </Form.Group>
         <br />
         <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -296,7 +295,7 @@ console.log(newFormData)
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control  onChange={handleNewInfluencer} name="email" value={newFormData.email} type="email" placeholder="Enter Email address" />
+            <Form.Control  onChange={handleNewInfluencer} name="email" value={newFormData.email} type="email" placeholder="Enter Email" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Location</Form.Label>
@@ -304,7 +303,7 @@ console.log(newFormData)
               id="basic-typeahead-single"
               labelKey="name"
               options={options}
-              placeholder="--- Please Select ---" 
+              placeholder="Select location" 
             />
         </Form.Group>
         </Form>
@@ -346,7 +345,7 @@ console.log(newFormData)
             <Form.Label>Email address</Form.Label>
             <Form.Control disabled={editDisable} name="email" value={formData.email}  onChange={handleChange} type="email" placeholder="Enter Email address" style={{backgroundColor: "#fff"}}/>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Group className="mb-0" controlId="formGroupEmail">
             <Form.Label>Disease area</Form.Label>
             <Typeahead
               id="basic-typeahead-single"
