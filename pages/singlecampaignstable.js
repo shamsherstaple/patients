@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Button, Col, Dropdown, DropdownButton, Form, Modal, Row, Table } from 'react-bootstrap'
+import { Button, Col, Dropdown, DropdownButton, Form, Modal, Row, Table,   Pagination, } from 'react-bootstrap'
 import moment from 'moment/moment';
 import ProfilePic from "../public/Images/profile-circle-2 1profil.png";
 import { MdOutlineDateRange } from "react-icons/md";
@@ -11,17 +11,37 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Cardsec from "../public/Images/card.png";
+import Removesec from "../public/Images/remove.png";
+import Editsec from "../public/Images/edit.png";
+import Datesec from "../public/Images/date.png";
+import InfluencerTableModal from "../Components/InfluencerTableModal";
+import InfluencerDetailsPopUp from "../Components/InfluencerTableModal";
 
-export default function SingleCampaignsTable() {
+export default function SingleCampaignsTable(props) {
 
   const ref = useRef();
+
+  function handleCheckAll() {
+    setSelectAll((prevState) => !prevState);
+    console.log(selectAll);
+  }
+  const [selectAll, setSelectAll] = useState(false);
+  // const selectAll=props.selectAll;
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   
   const [action, setAction] = useState();
 
+  const [infuDetailShow, setInfuDetailShow] = useState(false);
+
+  const [peopleInfo, setPeopleInfo] = useState({});
+
   const [actionShow, setActionShow] = useState(false);
   const handleActionClose = () => setActionShow(false);
   const handleActionShow = () => setActionShow(true);
+
+  const handleInfuDetailClose = () => setInfuDetailShow(false);
+  const handleInfuDetailShow = () => setInfuDetailShow(true);
 
   const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
   const options =["A","B","C","D","EE","FFF","GGG"]
@@ -31,15 +51,67 @@ export default function SingleCampaignsTable() {
 
   const [startDate, setStartDate] = useState(new Date());
 
+  const [checked, setChecked] = useState(false); 
+
   function handleAction(actionType){
     handleActionShow()
     setAction(actionType)
   }
+
+
+  const toggleHandler = (item) => () => {
+    setPeopleInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : {
+            id: item.id,
+            first: item.name,
+            last: item.lastName,
+            age: item.age
+          }
+    }));
+  };
+
+
+
+  const data = [
+    {
+      id: "1",
+      firstName: "Minhas",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    },{
+      id: "2",
+      firstName: "Minhas",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    }
+    ,{
+      id: "3",
+      firstName: "Developer",
+      lastName: " Asif",
+      Campaigns: "50",
+      CPC:'$7',
+      CPT:'$10',
+      Price:'$20',
+      Overlap:'20'
+    }
+  ];
   return (
     <Row>
+
       <Col lg={9} className="TableCol">
         <h2 className='heading'>Single Campagain Table</h2>
-      <Table className='singleCampTable'>
+      {/* <Table className='singleCampTable'>
       <thead className='custTableHead'>
         <tr>
           <th>Campagin</th>
@@ -81,7 +153,108 @@ export default function SingleCampaignsTable() {
           )
         })}
       </tbody>
-    </Table>
+    </Table> */}
+    <Col lg={12}>
+    <div className="headInfi">
+                    <span>
+                      Influencers<span>5</span>
+                    </span>
+
+                    {selectAll && (
+                      <Button className="primBtn cmmBtn">Donate</Button>
+                    )}
+                  </div>
+      <Table>
+        <thead className="custTableHead">
+          <tr>
+            <th>
+              {" "}
+              <Form>
+                <Form.Check 
+                type="checkbox" 
+                label="Username" 
+                name="selectAll"
+                id="selectAll"
+                onClick={handleCheckAll}
+                checked={selectAll}
+                 />
+              </Form>
+            </th>
+            <th className="center">Campaigns</th>
+            <th className="center">CPC</th>
+            <th className="center">CPT</th>
+            <th className="center">Price</th>
+            <th className="center">Overlap</th>
+            <th className="center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((d, index) => {
+            console.log(d)
+            return (
+              <tr key={index}>
+                <td>
+                  <div className="userinfo">
+                    <Form>
+                      {/* <Form.Check type="checkbox" checked={props.selectAll}  onChange={handleChange}/> */}
+                      <Form.Check type="checkbox"    onChange={toggleHandler(index)}   checked={selectAll ?selectAll:peopleInfo[index]}  />
+                                       </Form>
+                    <div onClick={handleInfuDetailShow} style={{margin: "0px 10px"}}><Image src={ProfilePic} width="50px" height="50px" /></div>
+                    <div onClick={handleInfuDetailShow}>
+                      <span>{d.firstName} </span>
+                      <span>Multiple Sclerosis</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="center">{d.Campaigns}</td>
+                <td className="center">{d.CPC}</td>
+                <td className="center">{d.CPT}</td>
+                <td className="center">{d.Price} </td>
+                <td className="center">{d.Overlap}</td>
+                <td className="center">
+                <DropdownButton variant="link" id="dropdown-basic-button" title={<BsThreeDotsVertical />}>
+                  <Dropdown.Item onClick={() => handleAction('Contact')}><Image src={Cardsec}/> Contact</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Note')}><Image src={Editsec}/>  Note</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Schedule')}><Image src={Datesec}/> Schedule</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Remove')}> <Image src={Removesec}/> Remove</Dropdown.Item>
+                </DropdownButton>
+                <InfluencerTableModal 
+                  actionShow={actionShow}
+                  handleActionClose={handleActionClose}
+                  action={action}
+                  actionContChoose={actionContChoose}
+                  setActionContChoose={setActionContChoose}
+                  optionLabel={optionLabel}
+                  ref={ref}
+                  setMultiSelections={setMultiSelections}
+                  multiSelections={multiSelections}
+                />
+                
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+     
+      <div style={{ float: "right", marginTop: "0px" }}>
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Item>{2}</Pagination.Item>
+          <Pagination.Item active>{3}</Pagination.Item>
+          <Pagination.Ellipsis />
+          <Pagination.Item>{32}</Pagination.Item>
+          <Pagination.Last />
+        </Pagination>
+      </div>
+
+      <InfluencerDetailsPopUp 
+        handleInfuDetailClose={handleInfuDetailClose}
+        infuDetailShow={infuDetailShow}
+        setInfuDetailShow={setInfuDetailShow}
+        />
+    </Col>
       </Col>
     <Col lg={3}>
         <DateNoti />
