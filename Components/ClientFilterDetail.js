@@ -21,14 +21,14 @@ export default function ClientFilterDetail() {
         <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Industry</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option>Please Select</option>
                 <option>...</option>
             </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Company</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>...</option>
           </Form.Select>
         </Form.Group>
@@ -38,7 +38,7 @@ export default function ClientFilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
           
         </Form.Group>
@@ -48,7 +48,7 @@ export default function ClientFilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
         </Form.Group>
       </Row>
@@ -56,7 +56,7 @@ export default function ClientFilterDetail() {
         <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Campaign Status</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option>Please Select</option>
                 <option>...</option>
             </Form.Select>
         </Form.Group>
@@ -99,20 +99,20 @@ export default function ClientFilterDetail() {
       <Row>
         <Col xs={3}>
         <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Location of Interest</Form.Label>
+            <Form.Label>Market</Form.Label>
             <Typeahead
                 id="basic-typeahead-single"
                 labelKey="name"
                 
                 options={options}
-                placeholder="--- Please Select ---"
+                placeholder="Please Select"
                 
             />
         </Form.Group>
         </Col>
-        <Col xs={6}>
+        <Col xs={3}>
         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Add Lable</Form.Label>
+          <Form.Label>Lable</Form.Label>
           <Typeahead
             defaultSelected={optionLabel.slice(0, 2)}
             id="public-methods-example"
@@ -124,11 +124,25 @@ export default function ClientFilterDetail() {
         />
         </Form.Group>
         </Col>
-        <Col xs={3}>
+
+
+
+        <Col lg={3}>
+          <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Task</Form.Label>
+              <Form.Select defaultValue="Choose...">
+                  <option>Please Select</option>
+                  <option>Task 1</option>
+                  <option>Task 2</option>
+                  <option>Task 3</option>
+              </Form.Select>
+          </Form.Group>
+        </Col>
+        {/* <Col xs={3}>
         <Form.Group as={Col} controlId="formGridState">
             <Form.Check type="checkbox" label="Only those with task" />
         </Form.Group>
-        </Col>
+        </Col> */}
       </Row>
     </Form>
     <div className='btnCont' style={{justifyContent: "space-between", }}>
@@ -141,7 +155,7 @@ export default function ClientFilterDetail() {
     </div>
     <div>
         <Button className='primBtn cmmBtn'>Filter</Button>
-        <Button className='ligBtn cmmBtn'><span className='clrBtn' style={{backgroundColor: "#2D3779"}}>00</span>Clear all filter</Button>
+        <Button className='ligBtn cmmBtn'><span className='clrBtn' style={{backgroundColor: "#2D3779"}}>04</span>Clear filter</Button>
     </div>
     </div>
     </div>

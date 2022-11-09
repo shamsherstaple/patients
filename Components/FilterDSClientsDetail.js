@@ -19,14 +19,14 @@ export default function FilterDSClientsDetail() {
         <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Industry</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option> Please Select </option>
                 <option>...</option>
             </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Company</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>...</option>
           </Form.Select>
         </Form.Group>
@@ -36,7 +36,7 @@ export default function FilterDSClientsDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
           
         </Form.Group>
@@ -46,7 +46,7 @@ export default function FilterDSClientsDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
         </Form.Group>
       </Row>
@@ -62,12 +62,26 @@ export default function FilterDSClientsDetail() {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" placeholder="Email" />
         </Form.Group>
+
         </Col>
+
+        <Col lg={3}>
+          <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Task</Form.Label>
+              <Form.Select defaultValue="Choose...">
+                  <option>Please Select</option>
+                  <option>Task 1</option>
+                  <option>Task 2</option>
+                  <option>Task 3</option>
+              </Form.Select>
+          </Form.Group>
+        </Col>
+
         <Col lg={6}>        
             <div className='btnCont' >
             <div>
                 <Button className='primBtn cmmBtn'>Filter</Button>
-                <Button className='ligBtn cmmBtn' style={{marginRight: "0px"}}><span className='clrBtn' style={{backgroundColor: "#A0A5C0"}}>00</span>Clear all filter</Button>
+                <Button className='ligBtn cmmBtn' style={{marginRight: "0px"}}><span className='clrBtn' style={{backgroundColor: "#A0A5C0"}}>06</span>Clear all filter</Button>
             </div>
             </div>
         </Col>   

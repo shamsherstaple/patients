@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Dropdown, DropdownButton, Form, Modal, Pagination, Row } from 'react-bootstrap'
 import filter from "../public/Images/SlidersHorizontal.png"
-import profilePic from "../public/Images/profile-circle-2 1.png"
+import profilePic from "../public/Images/new-profile.png"
 import { BsInstagram, BsThreeDotsVertical } from 'react-icons/bs'
 import { HiLocationMarker } from "react-icons/hi";
 import DiscoverInfluencerFilterDetail from './DiscoverInfluencerFilterDetail'
@@ -63,7 +63,13 @@ export default function DashboardContent() {
   {
     headingInner: "Registered",
     num: "29670"
-  },
+  },{
+    headingInner:"To Be Approved",
+    num: "63670"
+  },{
+    headingInner:"Call Scheduled",
+    num: "56570"
+  }
 ]
 
 const [startDate, setStartDate] = useState(new Date());
@@ -219,14 +225,18 @@ console.log(newFormData)
         <Col lg={4} key={index}>
           <div className='dataCard'>
             <span className='s1'>{d.headingInner}: <span className='s2'>{d.num}</span></span>
-         { [1,2,3,4,5,6].map((a, index) => {
+         { [1,2,3,4].map((a, index) => {
           return (
-            <div key={index} draggable="true" className='singleData draggable' >
+            <div key={index} draggable="false" className='singleData' >
             <Image src={profilePic} width="50px" onClick={handleEditShow}/>
             <div className='innerDataCard'>
               <div className='user' onClick={handleEditShow}>
-                <span><BsInstagram color="#2D3779" size={14}/> Username{a}</span>
-                <span style={{color: "#B5B5C3", display: 'flex', alignItems: "center" }}><Image src={USAFlag} width="15px" height="15px"/> &nbsp;  Heart Disease</span>
+                <span>
+                  {/* <BsInstagram color="#2D3779" size={14}/> */}
+                   Username{a}</span>
+                <span style={{color: "#B5B5C3", display: 'flex', alignItems: "center" }}>
+                  {/* <Image src={USAFlag} width="15px" height="15px"/>  */}
+                  Heart Disease</span>
               </div>
               <div className='info' onClick={handleEditClose} style={{flexDirection: "row",alignItems: "center"}}>
               <DropdownButton variant="link"id="dropdown-basic-button" title={<BsThreeDotsVertical />}>

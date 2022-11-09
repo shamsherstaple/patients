@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { Button, Col, Dropdown, DropdownButton, Form, Modal, Pagination, Row } from 'react-bootstrap'
-import profilePic from "../public/Images/profile-circle-2 1.png"
+import profilePic from "../public/Images/new-profile.png"
 import { BsInstagram, BsThreeDotsVertical } from 'react-icons/bs'
 import { HiLocationMarker } from "react-icons/hi";
 import { Typeahead } from 'react-bootstrap-typeahead'
@@ -11,19 +11,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import Image from 'next/image';
 
 export default function DSclientDaashboard() {
-
   const ref = useRef();
-
   const [action, setAction] = useState();
-
   const [actionShow, setActionShow] = useState(false);
   const handleActionClose = () => setActionShow(false);
   const handleActionShow = () => setActionShow(true);
-  
   const [editShow, setEditShow] = useState(false);
   const handleEditClose = () => setEditShow(false);
   const handleEditShow = () => setEditShow(true);
-
   const [actionContChoose, setActionContChoose] = useState("Default");
   const [multiSelections, setMultiSelections] = useState([]);
 const data = [{
@@ -41,7 +36,10 @@ const data = [{
     {
     headingInner: "Scheduled Call",
     num: "100"
-    },
+    },{
+      headingInner:"To Be Approved",
+      num: "63670"
+    }
 ]
 
 const optionLabel = ["Product Designer", "UI", "App Design", "UX"]
@@ -126,17 +124,19 @@ function handleAction(actionType){
         <Col lg={3} key={index}>
           <div className='dataCard' style={{padding: "10px"}}>
             <span className='s1'>{d.headingInner}: <span className='s2'>{d.num}</span></span>
-         { [1,2,3,4,5,6].map((a,index) => {
+         { [1,2,3,4].map((a,index) => {
           return (
-            <div key={index} draggable="true" className='singleData draggable' style={{padding: "8px",}}>
+            <div key={index} draggable="false" className='singleData' style={{padding: "8px",}}>
               <Image src={profilePic} width="50px" onClick={handleEditShow} />
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%"}}>
               <div className='innerDataCard' onClick={handleEditShow} style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                 <div className='user'>
-                  <span style={{fontSize:"13px",}}>Product Name {a}</span>
+                  <span style={{fontSize:"13px",}}>Product Name #</span>
                 </div>
                 <div className='info'>
-                  <span style={{fontSize:"13px", color: "#A7A9B6"}}><HiLocationMarker color="#2D3779"/> London</span>
+                  <span style={{fontSize:"13px", color: "#A7A9B6"}}>
+                    {/* <HiLocationMarker color="#2D3779"/> */}
+                    Multiple Sclerosis</span>
                 </div>
               </div>
               <div>
@@ -184,7 +184,7 @@ function handleAction(actionType){
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Industry</Form.Label>
             <Form.Select disabled={editDisable} name="industry" value={formData.industry} onChange={handleChange} defaultValue="Choose...">
-              <option>--- Please Select ---</option>
+              <option>Please Select</option>
               <option>Tech</option>
               <option>Bio</option>
             </Form.Select>
@@ -199,7 +199,7 @@ function handleAction(actionType){
               id="basic-typeahead-single"
               labelKey="name"
               options={options}
-              placeholder="--- Please Select ---"
+              placeholder="Please Select"
               disabled={editDisable} 
               name="location" 
               value={formData.diseaseArea} onChange={handleChange} 
@@ -216,7 +216,7 @@ function handleAction(actionType){
               id="basic-typeahead-single"
               labelKey="name"
               options={options}
-              placeholder="--- Please Select ---"
+              placeholder="Please Select "
               disabled={editDisable} 
               name="diseaseArea" 
               value={formData.diseaseArea} onChange={handleChange} 
@@ -253,7 +253,7 @@ function handleAction(actionType){
         <Form.Group className="mb-3" controlId="formGridState">
           <Form.Label>Status </Form.Label>
           <Form.Select disabled={editDisable} name="dateAdded" value={formData.status}  onChange={handleChange} defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>Ongoing</option>
             <option>Done</option>
           </Form.Select>
@@ -321,7 +321,7 @@ function handleAction(actionType){
         {actionContChoose === "Label" && 
          <div className='actionLabel'>
           <Form.Group className="mb-3" controlId="formGridState">
-            <Form.Label>Add Label</Form.Label>
+            <Form.Label>Label</Form.Label>
             <Typeahead
               defaultSelected={optionLabel.slice(0, 1)}
               id="public-methods-example"
@@ -348,7 +348,7 @@ function handleAction(actionType){
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Type</Form.Label>
         <Form.Select defaultValue="Choose...">
-            <option>--- Please Select ---</option>
+            <option>Please Select</option>
             <option>Meeting</option>
             <option>Task</option>
             <option>Reminder</option>

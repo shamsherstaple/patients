@@ -22,7 +22,7 @@ export default function DiscoverInfluencerFilterDetail() {
         <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Platform</Form.Label>
             <Form.Select defaultValue="Choose...">
-                <option>--- Please Select ---</option>
+                <option>Please Select</option>
                 <option>Instagram</option>
                 <option>Youtube</option>
                 <option>Tiktok</option>
@@ -34,7 +34,7 @@ export default function DiscoverInfluencerFilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
           
         </Form.Group>
@@ -44,7 +44,7 @@ export default function DiscoverInfluencerFilterDetail() {
             id="basic-typeahead-single"
             labelKey="name"
             options={options}
-            placeholder="--- Please Select ---"
+            placeholder="Please Select"
             />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
@@ -83,7 +83,7 @@ export default function DiscoverInfluencerFilterDetail() {
           </Row>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Add Label</Form.Label>
+          <Form.Label>Label</Form.Label>
           <Typeahead
             defaultSelected={optionLabel.slice(0, 1)}
             id="public-methods-example"
@@ -93,10 +93,23 @@ export default function DiscoverInfluencerFilterDetail() {
             placeholder="Add Label"
             ref={ref}
         />
+        
         </Form.Group>
+
+
+        <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>Task</Form.Label>
+            <Form.Select defaultValue="Choose...">
+                <option>Please Select</option>
+                <option>Task 1</option>
+                <option>Task 2</option>
+                <option>Task 3</option>
+            </Form.Select>
+        </Form.Group>
+{/*         
         <Form.Group as={Col} controlId="formGridState">
             <Form.Check type="checkbox" label="Only those with task" />
-        </Form.Group>
+        </Form.Group> */}
       </Row>
     </Form>
     <div className='btnCont' style={{justifyContent: "space-between", }}>
@@ -105,7 +118,7 @@ export default function DiscoverInfluencerFilterDetail() {
     </div>
     <div>
         <Button className='primBtn cmmBtn'>Filter</Button>
-        <Button className='ligBtn cmmBtn'><span className='clrBtn' style={{backgroundColor: "#2D3779"}}>00</span>Clear all filter</Button>
+        <Button className='ligBtn cmmBtn'><span className='clrBtn' style={{backgroundColor: "#2D3779"}}>04</span>Clear all filter</Button>
     </div>
     </div>
     </div>
