@@ -14,6 +14,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from 'next/image'
 
+import Cardsec from "../public/Images/card.png";
+import Removesec from "../public/Images/remove.png";
+import Editsec from "../public/Images/edit.png";
+import Datesec from "../public/Images/date.png";
+
 export default function DashboardContent() {
 
   const ref = useRef();
@@ -238,9 +243,17 @@ useEffect(() => {
               </div>
               <div className='info' onClick={handleEditClose} style={{flexDirection: "row",alignItems: "center"}}>
               <DropdownButton variant="link"id="dropdown-basic-button" title={<BsThreeDotsVertical />}>
-                <Dropdown.Item onClick={() => handleAction('Contact')}>Contact</Dropdown.Item>
+               
+                {/* <Dropdown.Item onClick={() => handleAction('Contact')}>Contact</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleAction('Note')}>Note</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleAction('Schedule')}>Schedule</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleAction('Schedule')}>Schedule</Dropdown.Item> */}
+
+
+
+                <Dropdown.Item onClick={() => handleAction('Contact')}><Image src={Cardsec}/> Contact</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Note')}><Image src={Editsec}/>  Note</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Schedule')}><Image src={Datesec}/> Schedule</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleAction('Remove')}> <Image src={Removesec}/> Remove</Dropdown.Item>
             </DropdownButton>
               </div>
             </div>
@@ -267,14 +280,14 @@ useEffect(() => {
         
       <Modal.Body className='campModal'>
         <button
-                    type="button"
-                    className="close"
-                    onClick={addpopupClose2}
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+        type="button"
+        className="close"
+        onClick={addpopupClose2}
+        data-dismiss="modal"
+        aria-label="Close"
+        >
+        <span aria-hidden="true">&times;</span>
+        </button>
         <h2>Add Influencer</h2>
         
         <Form>
@@ -376,6 +389,7 @@ useEffect(() => {
               </div>
               {(switchNav === "Info" || switchNav === "Default") && (
                 <Modal.Body>
+            {editDisable && <Button className='primBtn cmmBtn' onClick={handleEdit}style={{width: "100%"}}>Edit</Button>}
 
 <Form.Group className="mb-3" controlId="formGroupEmail">
         <Form.Label>First Name</Form.Label>
@@ -441,6 +455,14 @@ useEffect(() => {
               )}
               {switchNav === "Management" && (
               <Modal.Body>
+
+                
+              {editDisable && <Button className='primBtn cmmBtn' onClick={handleEdit}style={{width: "100%"}}>Confirm</Button>}
+              {/* {!editDisable && <Button className='primBtn cmmBtn' style={{width: "100%"}}>Save</Button>} */}
+
+
+
+
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Label>Comments</Form.Label>
               <Form.Control  name="comments" value={formData.comments}  onChange={handleChange} as="textarea" rows={2} />
@@ -473,11 +495,36 @@ useEffect(() => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Reminders</Form.Label>
-              <Form.Control  name="reminders" value={formData.reminders}  onChange={handleChange} type="text" placeholder="Enter Reminders" />
+              {/* <Form.Control  name="reminders" value={formData.reminders}  onChange={handleChange} type="text" placeholder="Enter Reminders" /> */}
+             
+              <Typeahead
+              defaultSelected={optionLabel.slice(0, 1)}
+              id="public-methods-example"
+              labelKey="name"
+              multiple
+              options={optionLabel}
+              placeholder="Add Label"
+              name="reminders"
+              />
+           
+             
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Tasks </Form.Label>
-              <Form.Control  name="tasks" value={formData.tasks}  onChange={handleChange} type="text" placeholder="Enter Tasks" />
+              {/* <Form.Control  name="tasks" value={formData.tasks}  onChange={handleChange} type="text" placeholder="Enter Tasks" /> */}
+             
+                
+              <Typeahead
+              defaultSelected={optionLabel.slice(0, 1)}
+              id="public-methods-example"
+              labelKey="name"
+              multiple
+              options={optionLabel}
+              placeholder="Add Label"
+              name="tasks"
+              />
+             
+             
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGridState">
               <Form.Label>Status </Form.Label>
@@ -489,17 +536,15 @@ useEffect(() => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formGridState">
-              <Form.Label>Date Added </Form.Label>
+              <Form.Label>Added </Form.Label>
               <Form.Control disabled readOnly name="tasks" value={moment(dateRange[0]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formGridState">
-              <Form.Label>Date Status Changed </Form.Label>
+              <Form.Label>Status Changed </Form.Label>
               <Form.Control disabled readOnly name="tasks" value={moment(dateRange[1]).format('LL')} type="text" style={{backgroundColor: "#F8FAFB"}} />
               </Form.Group>
 
-              {editDisable && <Button className='primBtn cmmBtn' onClick={handleEdit}style={{width: "100%"}}>Edit</Button>}
-              {!editDisable && <Button className='primBtn cmmBtn' style={{width: "100%"}}>Save</Button>}
 
               </Modal.Body>
               )}
@@ -513,12 +558,22 @@ useEffect(() => {
       { action === "Contact" && 
       <Modal.Body className='actdionModal'>
        <h2>Contact</h2>
+
+          <button
+          type="button"
+          className="close"
+          onClick={handleActionClose}
+          data-dismiss="modal"
+          aria-label="Close"
+          >
+          <span aria-hidden="true">&times;</span>
+          </button>
        <Form.Select onChange={(e) => setActionContChoose(e.target.value)} defaultValue="Choose...">
             <option> Please Select</option>
-            <option>DM</option>
             <option>Email</option>
+            <option>Direct Message</option>
         </Form.Select>
-        {actionContChoose === "DM" && 
+        {actionContChoose === "Direct Message" && 
         <div className='actionDm'>
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Message</Form.Label>
@@ -549,26 +604,49 @@ useEffect(() => {
       </Modal.Body> }
       
       { action === "Note" && 
+      
+    
       <Modal.Body className='actdionModal'>
-       <h2>Note</h2>
+         <div className='modal-head d-flex justify-content-between align-items-center'>
+         <h2>{actionContChoose === "Comment" ? 'Comment' :'Note' } </h2>
+      <button type="button"  onClick={handleActionClose} className='close'  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        
+       
+       <Form.Label>Type</Form.Label>
        <Form.Select onChange={(e) => setActionContChoose(e.target.value)} defaultValue="Choose...">
-            <option> Please Select </option>
+            <option >Please Select</option>
             <option>Comment</option>
             <option>Label</option>
         </Form.Select>
         {(actionContChoose === "Default" || actionContChoose === "Comment") && 
         <div className='actionDm'>
           <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Control as="textarea" rows={4} style={{backgroundColor: "#fff"}}/>
+          <Form.Label>Comment</Form.Label>
+            <Form.Control as="textarea" rows={5} style={{backgroundColor: "#fff"}}/>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formGroupEmail">
+          <Form.Label>Previous Comments</Form.Label>
+          <Form.Control disabled={true} as="textarea" value={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum .'} rows={3} style={{backgroundColor: "#fff"}}/>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formGroupEmail">
+          <Form.Control disabled={true} value={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum .'} as="textarea" rows={1} style={{backgroundColor: "#fff"}}/>
         </Form.Group>
         <div className='btnRightCont'>
-          <Button className="primBtn cmmBtn sendBtn">Add Text</Button>
+          <Button className="primBtn cmmBtn sendBtn">Add Comment</Button>
         </div>
         </div>}
         {actionContChoose === "Label" && 
          <div className='actionLabel'>
+           <Form.Group className="mb-3" controlId="formGridState">
+            <span>Exiting lales: <a href='#'>Label #2</a>, <a href='#'>Label #3</a></span>
+           </Form.Group>
           <Form.Group className="mb-3" controlId="formGridState">
-            <Form.Label>Add Label</Form.Label>
+            {/* <Form.Label>Add Label</Form.Label> */}
             <Typeahead
               defaultSelected={optionLabel.slice(0, 1)}
               id="public-methods-example"
@@ -576,21 +654,28 @@ useEffect(() => {
               multiple
               options={optionLabel}
               placeholder="Add Label"
-              ref={ref}
+              ///ref={props.ref}
           />
         </Form.Group>
         <div className='btnRightCont'>
           <Button className="primBtn cmmBtn sendBtn">Save</Button>
         </div>
         </div>}
-      </Modal.Body> }
+      </Modal.Body>
+      
+      
+      
+      }
      
       { action === "Schedule" && 
       <Modal.Body className='actdionModal'>
        <h2>Schedule</h2>
+       <button type="button"  onClick={handleActionClose} className='close'  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
        <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Subject</Form.Label>
-            <Form.Control type="text" placeholder="Enter message" style={{backgroundColor: "#fff"}}/>
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" placeholder="Add Title" style={{backgroundColor: "#fff"}}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Type</Form.Label>
@@ -633,6 +718,27 @@ useEffect(() => {
           <Button className="primBtn cmmBtn sendBtn">Schedule</Button>
         </div>
       </Modal.Body> }
+
+      { action === "Remove" && 
+      <Modal.Body className='actdionModal sure-modal'>
+     
+       <div className='modal-head d-flex justify-content-between align-items-center'>
+       <h2>Are You Sure?</h2>
+      <button type="button" className='close' onClick={handleActionClose} data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+      
+      <p>Are you sure you went to delete Michael Operation cannot be undone.</p>
+        
+        <div className='btnRightCont'>
+        <Button className="primBtn cmmBtn sendBtn light-btn-sec">No </Button>
+          <Button className="primBtn cmmBtn sendBtn">Yes</Button>
+        </div>
+      </Modal.Body> }
+
+
+
       
       </Modal>
 

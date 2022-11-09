@@ -630,6 +630,11 @@ color: #7E839F;
 {
   background-color: #ccc;
 }
+.dataCardSlider.row {
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+}
 /**/
 
 
