@@ -124,7 +124,7 @@ export default function ReportTable(props) {
             Approved<span>06</span>
           </Button>
         </div>
-        <Table>
+        <Table className="global-table-sec">
         <thead className="custTableHead">
             <tr>
               <th>

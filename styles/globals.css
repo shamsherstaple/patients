@@ -552,6 +552,7 @@ button.primBtn.modal-light-btn- {
 .cardupper{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .chartimg , .chartimg span, .chartimg img{
   max-width: unset !important;
@@ -582,8 +583,43 @@ button.primBtn.modal-light-btn- {
 .btnCenCont button.primBtn {
   border: 0;
 }
+.rounded-data{
+  background-color: rgba(134, 179, 217, 0.25);
+  font-size:10px;
+  color: #448DC9;
+  border-radius: 50px;
+  width: 25px;
+  height: 25px;
+  text-align:center;
+  display: inline-block;
+  line-height:25px;
+}
+.pagination .page-item a, .pagination .page-item.active a{
+  font-size: 14px;
+  text-decoration: none;
+}
+.global-table-sec tbody tr td{
+  font-size: 13px;
+  vertical-align: middle;
+  padding: 8px 0.5rem;
+}
+.global-table-sec thead tr th{
+font-size: 12px;
+color: #7E839F;
+}
+.global-table-sec tbody tr td a{
+  color: #464E5F;
+  text-decoration: none;
+}
+
 /**/
 
+
+@media only screen and (max-width:1400px){
+  .global_tab_sec .switchBtn1{
+    font-size: 12px;
+  } 
+}
 @media only screen and (max-width: 767px){
   .influencer-table-con table.table {
     width: 100%;

@@ -106,7 +106,7 @@ export default function InfluencerTable(props) {
   }
   return (
     <Col lg={12}>
-      <Table>
+      <Table className="global-table-sec">
         <thead className="custTableHead">
           <tr>
             <th>

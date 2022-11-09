@@ -188,6 +188,7 @@
   }
   .social-data span.desc {
     font-size: 12px;
+    color: #A9AECD;
 }
 p.growth-rate.negativegraph {
     background-color: #ffc1c1;
@@ -211,7 +212,8 @@ color: #2D3779;
     padding: 10px 10px;
     color: #fff;
     margin-right: 10px;
-    background: radial-gradient(circle at 30% 107%, #753a88 0%,#d6249f 60%,#cc2b5e 90%);
+    background: linear-gradient(61.67deg, #2E71AE 17.63%, #3A67A5 63.13%);
+    
   }
   
   .ytBg{
@@ -219,7 +221,7 @@ color: #2D3779;
     padding: 10px 10px;
     color: #fff;
     margin-right: 10px;
-    background: #FF0000;
+    background: #3967A5;
   }
   
   .tikBg{
@@ -227,7 +229,7 @@ color: #2D3779;
     padding: 10px 10px;
     color: #fff;
     margin-right: 10px;
-    background: #161C40;
+    background: linear-gradient(112.05deg, #448DC9 32.78%, #2D3779 74.73%);
   }
   
   .socialData{
