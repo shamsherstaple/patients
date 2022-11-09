@@ -215,7 +215,7 @@ console.log(newFormData)
         </div>
       </div>
       {showFilter && <DiscoverInfluencerFilterDetail />}
-      <Row>
+      <Row className='dataCardSlider'>
         { data.map((d , index) => {
           return (
         <Col lg={4} key={index}>
